@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ejercicios Coordinativos | C.D.D Diamante</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --orange:  #FF5A1F;
+      --orange2: #FF8C42;
+      --navy:    #0D1B2A;
+      --navy2:   #162032;
+      --navy3:   #1E2F47;
+      --white:   #FFFFFF;
+      --gray:    #94A3B8;
+      --grad-o:  linear-gradient(135deg,#FF5A1F,#FF8C42);
+      --grad-d:  linear-gradient(160deg,#0D1B2A 0%,#162032 100%);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;background:var(--navy);color:#fff;overflow-x:hidden}
+
+    /* ── CURSOR GLOW ── */
+    #cg{position:fixed;width:500px;height:500px;border-radius:50%;
+      background:radial-gradient(circle,rgba(255,90,31,.07) 0%,transparent 65%);
+      pointer-events:none;z-index:0;transform:translate(-50%,-50%);
+      transition:left .08s,top .08s}
+
+    /* ── NAVBAR ── */
+    .nav{position:fixed;top:0;left:0;right:0;z-index:1000;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:1.1rem 3rem;
+      background:rgba(13,27,42,.78);backdrop-filter:blur(20px);
+      border-bottom:1px solid rgba(255,90,31,.15);transition:padding .4s}
+    .nav.scrolled{padding:.6rem 3rem}
+    .nav-brand{display:flex;align-items:center;gap:.9rem;text-decoration:none}
+    .nav-logo{width:42px;height:42px;border-radius:50%;border:2px solid var(--orange);
+      overflow:hidden;box-shadow:0 0 16px rgba(255,90,31,.4)}
+    .nav-logo img{width:100%;height:100%;object-fit:cover}
+    .nav-logo .fb{width:100%;height:100%;background:var(--grad-o);
+      display:flex;align-items:center;justify-content:center;
+      font-family:'Bebas Neue',sans-serif;font-size:1rem}
+    .brand-txt{font-family:'Bebas Neue',sans-serif;font-size:1.35rem;letter-spacing:.08em}
+    .brand-txt em{color:var(--orange);font-style:normal}
+    .nav-links{display:flex;gap:2.5rem;list-style:none}
+    .nav-links a{color:rgba(255,255,255,.65);text-decoration:none;font-size:.88rem;
+      font-weight:600;letter-spacing:.04em;text-transform:uppercase;transition:color .2s;position:relative}
+    .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;
+      width:0;height:2px;background:var(--grad-o);transition:width .3s}
+    .nav-links a:hover{color:#fff}
+    .nav-links a:hover::after{width:100%}
+    .nav-cta{background:var(--grad-o);color:#fff;text-decoration:none;
+      font-weight:700;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;
+      padding:.55rem 1.4rem;border-radius:999px;box-shadow:0 4px 20px rgba(255,90,31,.4);
+      transition:transform .2s,box-shadow .2s}
+    .nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,90,31,.55)}
+    .nav-toggle{display:none;flex-direction:column;gap:5px;background:none;
+      border:none;cursor:pointer;z-index:1001}
+    .nav-toggle span{display:block;width:26px;height:2px;background:#fff;
+      border-radius:2px;transition:all .3s}
+
+    /* ── HERO ── */
+    .hero{min-height:100vh;display:flex;flex-direction:column;
+      align-items:center;justify-content:center;text-align:center;
+      padding:7rem 1.5rem 5rem;position:relative;overflow:hidden}
+    .hero-bg{position:absolute;inset:0;z-index:0;
+      background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(255,90,31,.09) 0%,transparent 70%),
+                 var(--grad-d)}
+    .field{position:absolute;inset:0;z-index:0;overflow:hidden;opacity:.055}
+    .field svg{width:100%;height:100%}
+    .ptcl{position:absolute;inset:0;z-index:0;overflow:hidden}
+    .p{position:absolute;border-radius:50%;background:var(--orange);opacity:0;
+       animation:pflyup linear infinite}
+    @keyframes pflyup{
+      0%{opacity:0;transform:translateY(0) scale(0)}
+      10%{opacity:.5}90%{opacity:.2}
+      100%{opacity:0;transform:translateY(-120vh) scale(1.5)}}
+    .hero-content{position:relative;z-index:2;max-width:860px}
+    .hero-badge{display:inline-flex;align-items:center;gap:.5rem;
+      background:rgba(255,90,31,.12);border:1px solid rgba(255,90,31,.35);
+      color:var(--orange2);font-size:.8rem;font-weight:700;letter-spacing:.1em;
+      text-transform:uppercase;padding:.4rem 1.2rem;border-radius:999px;
+      margin-bottom:1.6rem;animation:fadeUp .8s ease both}
+    .hero-logo{width:110px;height:110px;border-radius:50%;
+      border:3px solid var(--orange);overflow:hidden;margin:0 auto 1.8rem;
+      box-shadow:0 0 0 10px rgba(255,90,31,.09),0 0 60px rgba(255,90,31,.4);
+      animation:fadeUp .6s ease both,pulse 4s ease-in-out 1s infinite}
+    .hero-logo img{width:100%;height:100%;object-fit:cover}
+    .hero-logo .fb{width:100%;height:100%;background:var(--grad-o);
+      display:flex;align-items:center;justify-content:center;font-size:2rem}
+    @keyframes pulse{
+      0%,100%{box-shadow:0 0 0 10px rgba(255,90,31,.09),0 0 40px rgba(255,90,31,.3)}
+      50%     {box-shadow:0 0 0 20px rgba(255,90,31,.04),0 0 80px rgba(255,90,31,.6)}}
+    .hero-h1{font-family:'Bebas Neue',sans-serif;
+      font-size:clamp(3.2rem,10vw,8rem);line-height:.92;letter-spacing:.02em;
+      animation:fadeUp .8s ease .2s both}
+    .hero-h1 .l2{color:var(--orange);display:block}
+    .hero-h1 .l3{color:rgba(255,255,255,.28);display:block;font-size:.55em;letter-spacing:.18em}
+    .hero-sub{max-width:540px;margin:1.6rem auto 2.4rem;font-size:clamp(.98rem,2vw,1.12rem);
+      color:rgba(255,255,255,.6);line-height:1.7;animation:fadeUp .8s ease .4s both}
+    .hero-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:.65rem;
+      margin-bottom:2.8rem;animation:fadeUp .8s ease .5s both}
+    .htag{display:flex;align-items:center;gap:.35rem;
+      background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);
+      color:rgba(255,255,255,.75);font-size:.85rem;font-weight:600;
+      padding:.42rem 1.1rem;border-radius:999px;transition:background .2s,border-color .2s}
+    .htag:hover{background:rgba(255,90,31,.1);border-color:rgba(255,90,31,.3);color:#fff}
+    .hero-ctas{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;
+      animation:fadeUp .8s ease .6s both}
+    .btn-p{background:var(--grad-o);color:#fff;text-decoration:none;font-weight:700;
+      font-size:1rem;padding:.9rem 2.4rem;border-radius:999px;
+      box-shadow:0 6px 30px rgba(255,90,31,.5);transition:transform .2s,box-shadow .2s;
+      display:inline-flex;align-items:center;gap:.5rem}
+    .btn-p:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(255,90,31,.6)}
+    .btn-g{background:rgba(255,255,255,.06);color:#fff;text-decoration:none;
+      font-weight:600;font-size:1rem;padding:.9rem 2.4rem;border-radius:999px;
+      border:1px solid rgba(255,255,255,.15);transition:background .2s;
+      display:inline-flex;align-items:center;gap:.5rem}
+    .btn-g:hover{background:rgba(255,255,255,.12)}
+    .arrow{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);
+      z-index:2;animation:bounce 2s ease-in-out infinite}
+    .arrow svg{stroke:rgba(255,90,31,.55)}
+    @keyframes bounce{
+      0%,100%{transform:translateX(-50%) translateY(0)}
+      50%     {transform:translateX(-50%) translateY(10px)}}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+
+    /* ── STATS STRIP ── */
+    .strip{background:var(--grad-o);display:grid;grid-template-columns:repeat(4,1fr)}
+    .strip-cell{padding:2rem 1rem;text-align:center;
+      border-right:1px solid rgba(255,255,255,.2);transition:background .2s}
+    .strip-cell:last-child{border-right:none}
+    .strip-cell:hover{background:rgba(255,255,255,.1)}
+    .sn{font-family:'Bebas Neue',sans-serif;font-size:3rem;color:#fff;line-height:1}
+    .sl{font-size:.78rem;font-weight:600;color:rgba(255,255,255,.75);
+      letter-spacing:.05em;text-transform:uppercase;margin-top:.3rem}
+
+    /* ── SHARED SECTION ── */
+    section{padding:6rem 1.5rem}
+    .container{max-width:1200px;margin:0 auto}
+    .eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:.85rem;font-weight:700;
+      letter-spacing:.25em;color:var(--orange);text-transform:uppercase;
+      margin-bottom:.6rem;display:flex;align-items:center;gap:.6rem}
+    .eyebrow::before{content:'';display:block;width:24px;height:2px;background:var(--orange)}
+    .stitle{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,5vw,3.8rem);
+      line-height:1;color:#fff;margin-bottom:1rem}
+    .stitle .hl{color:var(--orange)}
+    .sdesc{color:var(--gray);font-size:1rem;line-height:1.7;max-width:540px}
+
+    /* ── FILTER ── */
+    .filter-row{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-bottom:3rem}
+    .fpill{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+      color:var(--gray);font-weight:600;font-size:.85rem;
+      padding:.48rem 1.3rem;border-radius:999px;cursor:pointer;transition:all .25s}
+    .fpill.active,.fpill:hover{background:var(--grad-o);border-color:transparent;
+      color:#fff;box-shadow:0 4px 16px rgba(255,90,31,.4)}
+
+    /* ── CARDS GRID ── */
+    #ejercicios{background:var(--navy2)}
+    .ex-hdr{display:flex;justify-content:space-between;align-items:flex-end;
+      margin-bottom:2rem;flex-wrap:wrap;gap:1.5rem}
+    .cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.8rem}
+
+    /* ── EXERCISE CARD ── */
+    .ecard{background:var(--navy3);border-radius:24px;overflow:hidden;
+      border:1px solid rgba(255,255,255,.06);
+      transition:transform .35s cubic-bezier(.22,.68,0,1.2),border-color .3s,box-shadow .35s;
+      position:relative}
+    .ecard:hover{transform:translateY(-10px) scale(1.015);
+      border-color:rgba(255,90,31,.4);
+      box-shadow:0 30px 60px rgba(0,0,0,.5),0 0 40px rgba(255,90,31,.1)}
+    .ecard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;
+      background:var(--grad-o);opacity:0;transition:opacity .3s}
+    .ecard:hover::before{opacity:1}
+
+    /* Card visual header */
+    .ecard-vis{height:200px;position:relative;overflow:hidden;
+      display:flex;align-items:center;justify-content:center}
+    .ecard-vis-bg{position:absolute;inset:0}
+    .ecard-dot-bg{position:absolute;inset:0;
+      background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,.04) 1px,transparent 0);
+      background-size:28px 28px}
+    .ecard-num{position:absolute;bottom:-.5rem;right:1rem;
+      font-family:'Bebas Neue',sans-serif;font-size:7rem;
+      color:rgba(255,255,255,.05);line-height:1;user-select:none}
+    .ecard-emoji{font-size:4.5rem;position:relative;z-index:1;
+      filter:drop-shadow(0 10px 30px rgba(0,0,0,.5));
+      animation:efloat 4s ease-in-out infinite}
+    @keyframes efloat{
+      0%,100%{transform:translateY(0) rotate(-3deg)}
+      50%     {transform:translateY(-12px) rotate(3deg)}}
+    .ecard-badge{position:absolute;top:1rem;left:1rem;z-index:2;
+      background:rgba(13,27,42,.82);backdrop-filter:blur(8px);
+      border:1px solid rgba(255,90,31,.3);color:var(--orange2);
+      font-size:.74rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+      padding:.28rem .9rem;border-radius:999px}
+    .ecard-cat{position:absolute;top:1rem;right:1rem;z-index:2;
+      width:36px;height:36px;border-radius:10px;background:var(--grad-o);
+      display:flex;align-items:center;justify-content:center;font-size:1.1rem;
+      box-shadow:0 4px 16px rgba(255,90,31,.4)}
+
+    /* Card body */
+    .ecard-body{padding:1.5rem}
+    .ecard-top{display:flex;align-items:flex-start;justify-content:space-between;
+      gap:1rem;margin-bottom:.5rem}
+    .ecard-title{font-family:'Barlow Condensed',sans-serif;font-size:1.45rem;
+      font-weight:900;line-height:1.1;color:#fff}
+    .diff-wrap{display:flex;flex-direction:column;align-items:flex-end;gap:3px;flex-shrink:0}
+    .dlabel{font-size:.7rem;color:var(--gray);font-weight:600;
+      text-transform:uppercase;letter-spacing:.05em}
+    .ddots{display:flex;gap:4px}
+    .dd{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.12)}
+    .dd.on{background:var(--orange);box-shadow:0 0 8px rgba(255,90,31,.6)}
+    .ecard-desc{color:var(--gray);font-size:.88rem;line-height:1.65;margin-bottom:1.2rem}
+    .mats{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.2rem}
+    .mc{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);
+      color:rgba(255,255,255,.65);font-size:.77rem;font-weight:600;
+      padding:.26rem .75rem;border-radius:999px;display:flex;align-items:center;gap:.3rem}
+
+    /* ── VIDEO THUMBNAIL ── */
+    .vid-wrap{border-radius:14px;overflow:hidden;position:relative;cursor:pointer}
+    .vid-thumb{position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:14px;
+      background:var(--navy2)}
+    .vid-thumb img{width:100%;height:100%;object-fit:cover;display:block;
+      transition:transform .4s}
+    .vid-wrap:hover .vid-thumb img{transform:scale(1.04)}
+    .vid-overlay{position:absolute;inset:0;background:rgba(0,0,0,.35);
+      display:flex;align-items:center;justify-content:center;
+      transition:background .3s}
+    .vid-wrap:hover .vid-overlay{background:rgba(0,0,0,.2)}
+    .play-btn{width:60px;height:60px;border-radius:50%;
+      background:var(--grad-o);display:flex;align-items:center;justify-content:center;
+      box-shadow:0 6px 24px rgba(255,90,31,.55);transition:transform .2s,box-shadow .2s}
+    .vid-wrap:hover .play-btn{transform:scale(1.12);box-shadow:0 10px 40px rgba(255,90,31,.7)}
+    .play-btn svg{margin-left:4px}
+    .vid-label{position:absolute;bottom:0;left:0;right:0;padding:.7rem 1rem;
+      background:linear-gradient(transparent,rgba(0,0,0,.75));
+      font-size:.8rem;font-weight:600;color:rgba(255,255,255,.85);
+      display:flex;align-items:center;gap:.4rem}
+    .yt-icon{flex-shrink:0}
+
+    /* ── BODY SECTION ── */
+    #cuerpo{background:var(--navy)}
+    .body-hdr{text-align:center;margin-bottom:4rem}
+    .body-hdr .eyebrow{justify-content:center}
+    .body-hdr .eyebrow::before{display:none}
+    .body-hdr .sdesc{margin:0 auto}
+    .body-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.5rem}
+    .bcard{background:var(--navy2);border-radius:20px;overflow:hidden;
+      border:1px solid rgba(255,255,255,.06);transition:transform .3s,border-color .3s}
+    .bcard:hover{transform:translateY(-6px);border-color:rgba(255,90,31,.3)}
+    .bcard-top{height:130px;position:relative;overflow:hidden;
+      display:flex;align-items:center;justify-content:center}
+    .bcard-top-bg{position:absolute;inset:0}
+    .bcard-emoji{font-size:3.6rem;position:relative;z-index:1}
+    .bcard-body{padding:1.3rem}
+    .bcard-title{font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;
+      font-weight:900;color:#fff;margin-bottom:.4rem}
+    .bcard-desc{color:var(--gray);font-size:.85rem;line-height:1.6}
+    .bcard-tag{display:inline-flex;align-items:center;gap:.3rem;
+      background:rgba(255,90,31,.1);color:var(--orange2);
+      font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;
+      padding:.22rem .7rem;border-radius:999px;margin-top:.8rem}
+
+    /* ── CLUB SECTION ── */
+    #club{background:var(--navy2);position:relative;overflow:hidden}
+    #club::after{content:'';position:absolute;right:-10rem;top:50%;
+      transform:translateY(-50%);width:600px;height:600px;border-radius:50%;
+      background:radial-gradient(circle,rgba(255,90,31,.06),transparent 70%);
+      pointer-events:none}
+    .club-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;
+      align-items:center;position:relative;z-index:1}
+    .club-logo-wrap{display:flex;align-items:center;justify-content:center}
+    .club-ring{width:280px;height:280px;border-radius:50%;
+      border:6px solid var(--orange);overflow:hidden;
+      box-shadow:0 0 0 20px rgba(255,90,31,.07),0 0 80px rgba(255,90,31,.35);
+      animation:pulse 4s ease-in-out infinite}
+    .club-ring img{width:100%;height:100%;object-fit:cover}
+    .club-ring .fb{width:100%;height:100%;background:var(--grad-o);
+      display:flex;align-items:center;justify-content:center;
+      font-family:'Bebas Neue',sans-serif;font-size:3rem}
+    .club-text .sdesc{max-width:100%}
+    .facts{margin-top:2.5rem;display:flex;flex-direction:column;gap:1rem}
+    .fact{display:flex;align-items:center;gap:1rem;padding:.9rem 1.2rem;
+      border-radius:14px;background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.07);transition:background .2s,border-color .2s}
+    .fact:hover{background:rgba(255,90,31,.07);border-color:rgba(255,90,31,.2)}
+    .fact-icon{width:40px;height:40px;border-radius:10px;background:var(--grad-o);
+      display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+    .fact-txt strong{display:block;color:#fff;font-size:.93rem}
+    .fact-txt span{color:var(--gray);font-size:.82rem}
+
+    /* ── FOOTER ── */
+    footer{background:var(--navy);border-top:1px solid rgba(255,90,31,.2);
+      padding:3rem 1.5rem 2rem;text-align:center}
+    .foot-ring{width:72px;height:72px;border-radius:50%;border:2px solid var(--orange);
+      overflow:hidden;margin:0 auto 1.2rem}
+    .foot-ring img{width:100%;height:100%;object-fit:cover}
+    .foot-ring .fb{width:100%;height:100%;background:var(--grad-o);
+      display:flex;align-items:center;justify-content:center;
+      font-family:'Bebas Neue',sans-serif}
+    .foot-name{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.1em;color:#fff}
+    .foot-links{display:flex;justify-content:center;gap:1.5rem;margin:1rem 0;flex-wrap:wrap}
+    .foot-links a{color:var(--gray);text-decoration:none;font-size:.9rem;font-weight:500;
+      transition:color .2s;display:flex;align-items:center;gap:.4rem}
+    .foot-links a:hover{color:var(--orange)}
+    .foot-copy{color:rgba(255,255,255,.18);font-size:.8rem;margin-top:1.5rem}
+
+    /* ── REVEAL ── */
+    .rev{opacity:0;transform:translateY(38px);transition:opacity .7s ease,transform .7s ease}
+    .rev.vis{opacity:1;transform:translateY(0)}
+    .rev-l{opacity:0;transform:translateX(-38px);transition:opacity .7s ease,transform .7s ease}
+    .rev-l.vis{opacity:1;transform:translateX(0)}
+    .rev-r{opacity:0;transform:translateX(38px);transition:opacity .7s ease,transform .7s ease}
+    .rev-r.vis{opacity:1;transform:translateX(0)}
+    .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+    .d4{transition-delay:.4s}.d5{transition-delay:.5s}.d6{transition-delay:.6s}
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:900px){
+      .nav,.nav.scrolled{padding:1rem 1.5rem}
+      .nav-links{position:fixed;top:0;left:0;right:0;bottom:0;
+        background:var(--navy2);flex-direction:column;align-items:center;
+        justify-content:center;gap:2.5rem;transform:translateX(100%);
+        transition:transform .4s;z-index:999}
+      .nav-links.open{transform:translateX(0)}
+      .nav-links a{font-size:1.5rem}
+      .nav-cta{display:none}
+      .nav-toggle{display:flex}
+      .club-inner{grid-template-columns:1fr;gap:2.5rem;text-align:center}
+      .club-logo-wrap{order:-1}
+      .club-ring{width:200px;height:200px}
+      .strip{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:600px){
+      .cards-grid,.body-cards{grid-template-columns:1fr}
+      .strip{grid-template-columns:repeat(2,1fr)}
+      .strip-cell{padding:1.2rem .5rem}
+      .sn{font-size:2.2rem}
+    }
+  </style>
+</head>
+<body>
+
+<div id="cg" aria-hidden="true"></div>
+
+<!-- ══════════════════ NAVBAR ══════════════════ -->
+<nav class="nav" id="nav">
+  <a href="#inicio" class="nav-brand">
+    <div class="nav-logo">
+      <img src="logo.png" alt="CDD" onerror="imgErr(this)"/>
+      <div class="fb" style="display:none">D</div>
+    </div>
+    <span class="brand-txt">C.D.D &nbsp;<em>Diamante</em></span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#inicio"    onclick="closeNav()">Inicio</a></li>
+    <li><a href="#ejercicios" onclick="closeNav()">Ejercicios</a></li>
+    <li><a href="#cuerpo"    onclick="closeNav()">Cuerpo</a></li>
+    <li><a href="#club"      onclick="closeNav()">Nosotros</a></li>
+  </ul>
+  <a href="https://wa.link/io2y91" target="_blank" rel="noopener noreferrer" class="nav-cta">¡Únete!</a>
+  <button class="nav-toggle" id="navTgl" aria-label="Menú" aria-expanded="false" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ══════════════════ HERO ══════════════════ -->
+<section class="hero" id="inicio" aria-label="Inicio">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="field" aria-hidden="true">
+    <svg viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" fill="none" stroke="white" stroke-width="1">
+      <circle cx="600" cy="350" r="120"/>
+      <line x1="600" y1="0" x2="600" y2="700"/>
+      <rect x="40"  y="225" width="150" height="250"/>
+      <rect x="40"  y="285" width="60"  height="130"/>
+      <rect x="1010" y="225" width="150" height="250"/>
+      <rect x="1100" y="285" width="60"  height="130"/>
+      <rect x="40"  y="40"  width="1120" height="620"/>
+      <circle cx="600" cy="350" r="6" fill="white"/>
+    </svg>
+  </div>
+  <div class="ptcl" id="ptcl" aria-hidden="true"></div>
+
+  <div class="hero-content">
+    <div class="hero-logo">
+      <img src="logo.png" alt="Club Deportivo El Diamante"
+           onerror="imgErr(this)"/>
+      <div class="fb" style="display:none">💎</div>
+    </div>
+    <div class="hero-badge" role="note">💎 Club Deportivo El Diamante · Pereira, Colombia</div>
+    <h1 class="hero-h1">
+      Ejercicios
+      <span class="l2">Coordinativos</span>
+      <span class="l3">Cuerpo &amp; Balón · Desde casa o el parque</span>
+    </h1>
+    <p class="hero-sub">
+      Mejora tu coordinación, agilidad y control del balón con ejercicios individuales.
+      Sin excusas, solo constancia y ganas. 🔥
+    </p>
+    <div class="hero-tags" role="list">
+      <span class="htag" role="listitem">🏠 Desde casa</span>
+      <span class="htag" role="listitem">🌳 En el parque</span>
+      <span class="htag" role="listitem">⚽ Con balón</span>
+      <span class="htag" role="listitem">🤸 Cuerpo completo</span>
+      <span class="htag" role="listitem">👤 Individual</span>
+      <span class="htag" role="listitem">🎯 Coordinación</span>
+    </div>
+    <div class="hero-ctas">
+      <a href="#ejercicios" class="btn-p">
+        Ver ejercicios
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </a>
+      <a href="#club" class="btn-g">Conocer el club</a>
+    </div>
+  </div>
+  <div class="arrow" aria-hidden="true">
+    <svg width="30" height="30" fill="none" viewBox="0 0 24 24" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ══════════════════ STATS STRIP ══════════════════ -->
+<div class="strip" role="list" aria-label="Datos del club">
+  <div class="strip-cell" role="listitem"><div class="sn" data-target="29" data-suf="+">29+</div><div class="sl">Años formando</div></div>
+  <div class="strip-cell" role="listitem"><div class="sn" data-target="8"  data-suf="">8</div><div class="sl">Ejercicios</div></div>
+  <div class="strip-cell" role="listitem"><div class="sn" data-target="4"  data-suf="K+">4K+</div><div class="sl">Seguidores</div></div>
+  <div class="strip-cell" role="listitem"><div class="sn" data-target="100" data-suf="%">100%</div><div class="sl">Pasión</div></div>
+</div>
+
+<!-- ══════════════════ EJERCICIOS CON BALÓN ══════════════════ -->
+<section id="ejercicios" aria-labelledby="ej-title">
+  <div class="container">
+    <div class="ex-hdr">
+      <div class="rev">
+        <p class="eyebrow">⚽ Con balón</p>
+        <h2 class="stitle" id="ej-title">Ejercicios con<br/><span class="hl">Balón</span></h2>
+        <p class="sdesc">Control, coordinación y habilidad. Solo necesitas un balón y ganas.</p>
+      </div>
+      <div class="filter-row rev" role="group" aria-label="Filtrar por lugar">
+        <button class="fpill active" onclick="filtrar('todos',this)">Todos</button>
+        <button class="fpill" onclick="filtrar('casa',this)">🏠 Casa</button>
+        <button class="fpill" onclick="filtrar('parque',this)">🌳 Parque</button>
+      </div>
+    </div>
+
+    <div class="cards-grid" id="cg2">
+
+      <!-- ░░ CARD 1 — Toques alternados ░░ -->
+      <!-- Video: "COMO DAR TOQUES CON EL BALON DE FUTBOL" - canal de fútbol en español -->
+      <article class="ecard rev d1" data-lugar="casa">
+        <div class="ecard-vis">
+          <div class="ecard-vis-bg" style="background:linear-gradient(135deg,#0D1B2A,#1E2F47)"></div>
+          <div class="ecard-dot-bg"></div>
+          <div class="ecard-num">01</div>
+          <span class="ecard-badge">🏠 Casa</span>
+          <div class="ecard-cat" aria-hidden="true">⚽</div>
+          <div class="ecard-emoji" aria-hidden="true">⚽</div>
+        </div>
+        <div class="ecard-body">
+          <div class="ecard-top">
+            <h3 class="ecard-title">Toques Alternados<br/>Pie Derecho e Izquierdo</h3>
+            <div class="diff-wrap" aria-label="Dificultad: fácil">
+              <span class="dlabel">Nivel</span>
+              <div class="ddots"><div class="dd on"></div><div class="dd"></div><div class="dd"></div></div>
+            </div>
+          </div>
+          <p class="ecard-desc">
+            Alterna toques suaves con pie derecho e izquierdo manteniéndolo cerca del suelo.
+            Mejora el toque fino y la sensación de balón. Perfecto para empezar cualquier sesión.
+          </p>
+          <div class="mats">
+            <span class="mc">⚽ 1 balón</span>
+            <span class="mc">📐 2m² espacio</span>
+          </div>
+          <a class="vid-wrap" href="https://www.youtube.com/watch?v=NCJNHbxKCZY" target="_blank" rel="noopener noreferrer" aria-label="Ver video: Toques alternados en YouTube">
+            <div class="vid-thumb">
+              <img src="https://img.youtube.com/vi/NCJNHbxKCZY/mqdefault.jpg" alt="Toques alternados con el balón" loading="lazy" />
+              <div class="vid-overlay">
+                <div class="play-btn" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+                    <polygon points="5,3 19,12 5,21"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="vid-label">
+                <svg class="yt-icon" width="20" height="14" viewBox="0 0 24 17" fill="red" aria-hidden="true">
+                  <path d="M23.5 2.5a3 3 0 00-2.1-2.1C19.5 0 12 0 12 0S4.5 0 2.6.4A3 3 0 00.5 2.5 31 31 0 000 8.5a31 31 0 00.5 6 3 3 0 002.1 2.1C4.5 17 12 17 12 17s7.5 0 9.4-.4a3 3 0 002.1-2.1 31 31 0 00.5-6 31 31 0 00-.5-6z"/>
+                  <polygon points="9.5,12.5 15.5,8.5 9.5,4.5" fill="white"/>
+                </svg>
+                Ver en YouTube →
+              </div>
+            </div>
+          </a>
+        </div>
+      </article>
+
+      <!-- ░░ CARD 2 — Malabares ░░ -->
+      <article class="ecard rev d2" data-lugar="casa">
+        <div class="ecard-vis">
+          <div class="ecard-vis-bg" style="background:linear-gradient(135deg,#1a0800,#2a1400)"></div>
+          <div class="ecard-dot-bg"></div>
+          <div class="ecard-num">02</div>
+          <span class="ecard-badge">🏠 Casa</span>
+          <div class="ecard-cat" aria-hidden="true">🌟</div>
+          <div class="ecard-emoji" style="animation-delay:.8s" aria-hidden="true">🌟</div>
+        </div>
+        <div class="ecard-body">
+          <div class="ecard-top">
+            <h3 class="ecard-title">Malabares<br/>con el Balón</h3>
+            <div class="diff-wrap" aria-label="Dificultad: media">
+              <span class="dlabel">Nivel</span>
+              <div class="ddots"><div class="dd on"></div><div class="dd on"></div><div class="dd"></div></div>
+            </div>
+          </div>
+          <p class="ecard-desc">
+            Mantén el balón en el aire con pies, rodillas y cabeza. Desafía tu récord de toques cada día.
+            El mejor ejercicio para la coordinación ojo-pie y la concentración.
+          </p>
+          <div class="mats">
+            <span class="mc">⚽ 1 balón</span>
+            <span class="mc">📐 Espacio libre</span>
+          </div>
+          <a class="vid-wrap" href="https://www.youtube.com/watch?v=W3rIbGGNfBE" target="_blank" rel="noopener noreferrer" aria-label="Ver video: Malabares en YouTube">
+            <div class="vid-thumb">
+              <img src="https://img.youtube.com/vi/W3rIbGGNfBE/mqdefault.jpg" alt="Malabares con el balón" loading="lazy" />
+              <div class="vid-overlay">
+                <div class="play-btn" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+                    <polygon points="5,3 19,12 5,21"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="vid-label">
+                <svg class="yt-icon" width="20" height="14" viewBox="0 0 24 17" fill="red" aria-hidden="true">
+                  <path d="M23.5 2.5a3 3 0 00-2.1-2.1C19.5 0 12 0 12 0S4.5 0 2.6.4A3 3 0 00.5 2.5 31 31 0 000 8.5a31 31 0 00.5 6 3 3 0 002.1 2.1C4.5 17 12 17 12 17s7.5 0 9.4-.4a3 3 0 002.1-2.1 31 31 0 00.5-6 31 31 0 00-.5-6z"/>
+                  <polygon points="9.5,12.5 15.5,8.5 9.5,4.5" fill="white"/>
+                </svg>
+                Ver en YouTube →
+              </div>
+            </div>
+          </a>
+        </div>
+      </article>
+
+      <!-- ░░ CARD 3 — Conducción zigzag ░░ -->
+      <article class="ecard rev d3" data-lugar="parque">
+        <div class="ecard-vis">
+          <div class="ecard-vis-bg" style="background:linear-gradient(135deg,#0d1a0a,#152010)"></div>
+          <div class="ecard-dot-bg"></div>
+          <div class="ecard-num">03</div>
+          <span class="ecard-badge">🌳 Parque</span>
+          <div class="ecard-cat" aria-hidden="true">🏃</div>
+          <div class="ecard-emoji" style="animation-delay:1.2s" aria-hidden="true">🏃</div>
+        </div>
+        <div class="ecard-body">
+          <div class="ecard-top">
+            <h3 class="ecard-title">Conducción<br/>en Zigzag</h3>
+            <div class="diff-wrap" aria-label="Dificultad: media">
+              <span class="dlabel">Nivel</span>
+              <div class="ddots"><div class="dd on"></div><div class="dd on"></div><div class="dd"></div></div>
+            </div>
+          </div>
+          <p class="ecard-desc">
+            Coloca conos o botellas en línea y conduce el balón sorteándolos. Trabaja la agilidad,
+            el cambio de dirección y el control en movimiento. Aumenta velocidad conforme mejoras.
+          </p>
+          <div class="mats">
+            <span class="mc">⚽ 1 balón</span>
+            <span class="mc">🔺 5+ conos</span>
+            <span class="mc">📏 10m largo</span>
+          </div>
+          <a class="vid-wrap" href="https://www.youtube.com/watch?v=5T2smxMQjIE" target="_blank" rel="noopener noreferrer" aria-label="Ver video: Conducción en zigzag en YouTube">
+            <div class="vid-thumb">
+              <img src="https://img.youtube.com/vi/5T2smxMQjIE/mqdefault.jpg" alt="Conducción en zigzag con conos" loading="lazy" />
+              <div class="vid-overlay">
+                <div class="play-btn" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+                    <polygon points="5,3 19,12 5,21"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="vid-label">
+                <svg class="yt-icon" width="20" height="14" viewBox="0 0 24 17" fill="red" aria-hidden="true">
+                  <path d="M23.5 2.5a3 3 0 00-2.1-2.1C19.5 0 12 0 12 0S4.5 0 2.6.4A3 3 0 00.5 2.5 31 31 0 000 8.5a31 31 0 00.5 6 3 3 0 002.1 2.1C4.5 17 12 17 12 17s7.5 0 9.4-.4a3 3 0 002.1-2.1 31 31 0 00.5-6 31 31 0 00-.5-6z"/>
+                  <polygon points="9.5,12.5 15.5,8.5 9.5,4.5" fill="white"/>
+                </svg>
+                Ver en YouTube →
+              </div>
+            </div>
+          </a>
+        </div>
+      </article>
+
+      <!-- ░░ CARD 4 — Pase contra la pared ░░ -->
+      <article class="ecard rev d4" data-lugar="parque">
+        <div class="ecard-vis">
+          <div class="ecard-vis-bg" style="background:linear-gradient(135deg,#001520,#002030)"></div>
+          <div class="ecard-dot-bg"></div>
+          <div class="ecard-num">04</div>
+          <span class="ecard-badge">🌳 Parque</span>
+          <div class="ecard-cat" aria-hidden="true">🎯</div>
+          <div class="ecard-emoji" style="animation-delay:1.6s" aria-hidden="true">🎯</div>
+        </div>
+        <div class="ecard-body">
+          <div class="ecard-top">
+            <h3 class="ecard-title">Pase y Control<br/>contra la Pared</h3>
+            <div class="diff-wrap" aria-label="Dificultad: fácil">
+              <span class="dlabel">Nivel</span>
+              <div class="ddots"><div class="dd on"></div><div class="dd"></div><div class="dd"></div></div>
+            </div>
+          </div>
+          <p class="ecard-desc">
+            Busca una pared y practica el pase con el interior del pie. Alterna control con
+            derecho e izquierdo. Aumenta la distancia conforme mejora tu precisión.
+          </p>
+          <div class="mats">
+            <span class="mc">⚽ 1 balón</span>
+            <span class="mc">🧱 Pared lisa</span>
+          </div>
+          <a class="vid-wrap" href="https://www.youtube.com/watch?v=qkT0q1Pxd7E" target="_blank" rel="noopener noreferrer" aria-label="Ver video: Pase contra la pared en YouTube">
+            <div class="vid-thumb">
+              <img src="https://img.youtube.com/vi/qkT0q1Pxd7E/mqdefault.jpg" alt="Pase y control contra la pared" loading="lazy" />
+              <div class="vid-overlay">
+                <div class="play-btn" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+                    <polygon points="5,3 19,12 5,21"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="vid-label">
+                <svg class="yt-icon" width="20" height="14" viewBox="0 0 24 17" fill="red" aria-hidden="true">
+                  <path d="M23.5 2.5a3 3 0 00-2.1-2.1C19.5 0 12 0 12 0S4.5 0 2.6.4A3 3 0 00.5 2.5 31 31 0 000 8.5a31 31 0 00.5 6 3 3 0 002.1 2.1C4.5 17 12 17 12 17s7.5 0 9.4-.4a3 3 0 002.1-2.1 31 31 0 00.5-6 31 31 0 00-.5-6z"/>
+                  <polygon points="9.5,12.5 15.5,8.5 9.5,4.5" fill="white"/>
+                </svg>
+                Ver en YouTube →
+              </div>
+            </div>
+          </a>
+        </div>
+      </article>
+
+      <!-- ░░ CARD 5 — Equilibrio ░░ -->
+      <article class="ecard rev d5" data-lugar="casa">
+        <div class="ecard-vis">
+          <div class="ecard-vis-bg" style="background:linear-gradient(135deg,#160a1f,#1f1030)"></div>
+          <div class="ecard-dot-bg"></div>
+          <div class="ecard-num">05</div>
+          <span class="ecard-badge">🏠 Casa</span>
+          <div class="ecard-cat" aria-hidden="true">⚖️</div>
+          <div class="ecard-emoji" style="animation-delay:.4s" aria-hidden="true">⚖️</div>
+        </div>
+        <div class="ecard-body">
+          <div class="ecard-top">
+            <h3 class="ecard-title">Equilibrio<br/>con Balón</h3>
+            <div class="diff-wrap" aria-label="Dificultad: media">
+              <span class="dlabel">Nivel</span>
+              <div class="ddots"><div class="dd on"></div><div class="dd on"></div><div class="dd"></div></div>
+            </div>
+          </div>
+          <p class="ecard-desc">
+            Posa el balón encima del pie y mantén el equilibrio en un solo pie. Muévelo suavemente
+            sin dejarlo caer. Fortalece el tobillo y la propiocepción, clave para el control en partido.
+          </p>
+          <div class="mats">
+            <span class="mc">⚽ 1 balón</span>
+            <span class="mc">📐 Espacio pequeño</span>
+          </div>
+          <a class="vid-wrap" href="https://www.youtube.com/watch?v=jVCpExhfF8Y" target="_blank" rel="noopener noreferrer" aria-label="Ver video: Equilibrio con balón en YouTube">
+            <div class="vid-thumb">
+              <img src="https://img.youtube.com/vi/jVCpExhfF8Y/mqdefault.jpg" alt="Equilibrio y coordinación con balón" loading="lazy" />
+              <div class="vid-overlay">
+                <div class="play-btn" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+                    <polygon points="5,3 19,12 5,21"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="vid-label">
+                <svg class="yt-icon" width="20" height="14" viewBox="0 0 24 17" fill="red" aria-hidden="true">
+                  <path d="M23.5 2.5a3 3 0 00-2.1-2.1C19.5 0 12 0 12 0S4.5 0 2.6.4A3 3 0 00.5 2.5 31 31 0 000 8.5a31 31 0 00.5 6 3 3 0 002.1 2.1C4.5 17 12 17 12 17s7.5 0 9.4-.4a3 3 0 002.1-2.1 31 31 0 00.5-6 31 31 0 00-.5-6z"/>
+                  <polygon points="9.5,12.5 15.5,8.5 9.5,4.5" fill="white"/>
+                </svg>
+                Ver en YouTube →
+              </div>
+            </div>
+          </a>
+        </div>
+      </article>
+
+      <!-- ░░ CARD 6 — Sprint y control ░░ -->
+      <article class="ecard rev d6" data-lugar="parque">
+        <div class="ecard-vis">
+          <div class="ecard-vis-bg" style="background:linear-gradient(135deg,#001a1a,#002020)"></div>
+          <div class="ecard-dot-bg"></div>
+          <div class="ecard-num">06</div>
+          <span class="ecard-badge">🌳 Parque</span>
+          <div class="ecard-cat" aria-hidden="true">💨</div>
+          <div class="ecard-emoji" style="animation-delay:2s" aria-hidden="true">💨</div>
+        </div>
+        <div class="ecard-body">
+          <div class="ecard-top">
+            <h3 class="ecard-title">Sprint y<br/>Control Rápido</h3>
+            <div class="diff-wrap" aria-label="Dificultad: alta">
+              <span class="dlabel">Nivel</span>
+              <div class="ddots"><div class="dd on"></div><div class="dd on"></div><div class="dd on"></div></div>
+            </div>
+          </div>
+          <p class="ecard-desc">
+            Sprinta 10 metros, controla el balón rodado y vuelve corriendo. Trabaja la reacción,
+            el primer toque y la velocidad de movimiento. Excelente para simular situaciones de partido.
+          </p>
+          <div class="mats">
+            <span class="mc">⚽ 1 balón</span>
+            <span class="mc">🔺 2 conos</span>
+            <span class="mc">📏 10m espacio</span>
+          </div>
+          <a class="vid-wrap" href="https://www.youtube.com/watch?v=QmFPqEBaBDQ" target="_blank" rel="noopener noreferrer" aria-label="Ver video: Sprint y control en YouTube">
+            <div class="vid-thumb">
+              <img src="https://img.youtube.com/vi/QmFPqEBaBDQ/mqdefault.jpg" alt="Ejercicios de velocidad y control de balón" loading="lazy" />
+              <div class="vid-overlay">
+                <div class="play-btn" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+                    <polygon points="5,3 19,12 5,21"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="vid-label">
+                <svg class="yt-icon" width="20" height="14" viewBox="0 0 24 17" fill="red" aria-hidden="true">
+                  <path d="M23.5 2.5a3 3 0 00-2.1-2.1C19.5 0 12 0 12 0S4.5 0 2.6.4A3 3 0 00.5 2.5 31 31 0 00.5 6 3 3 0 002.1 2.1C4.5 17 12 17 12 17s7.5 0 9.4-.4a3 3 0 002.1-2.1 31 31 0 00.5-6 31 31 0 00-.5-6z"/>
+                  <polygon points="9.5,12.5 15.5,8.5 9.5,4.5" fill="white"/>
+                </svg>
+                Ver en YouTube →
+              </div>
+            </div>
+          </a>
+        </div>
+      </article>
+
+    </div><!-- /grid -->
+  </div>
+</section>
+
+<!-- ══════════════════ COORDINACIÓN CORPORAL ══════════════════ -->
+<section id="cuerpo" aria-labelledby="cuerpo-title">
+  <div class="container">
+    <div class="body-hdr rev">
+      <p class="eyebrow">🤸 Cuerpo completo</p>
+      <h2 class="stitle" id="cuerpo-title">Coordinación<br/><span class="hl">Corporal</span></h2>
+      <p class="sdesc">
+        Ejercicios físicos de coordinación para trabajar el cuerpo entero.
+        Complementan perfectamente el entrenamiento con balón.
+      </p>
+    </div>
+
+    <div class="body-cards">
+
+      <div class="bcard rev d1">
+        <div class="bcard-top">
+          <div class="bcard-top-bg" style="background:linear-gradient(135deg,rgba(255,90,31,.15),rgba(255,90,31,.35))"></div>
+          <div class="bcard-emoji" aria-hidden="true">🦵</div>
+        </div>
+        <div class="bcard-body">
+          <h3 class="bcard-title">Skipping — Rodillas al Pecho</h3>
+          <p class="bcard-desc">
+            Corre en el lugar llevando las rodillas lo más alto posible alternando rápido.
+            Activa los flexores de cadera, mejora la cadencia de carrera y la coordinación de brazos y piernas.
+          </p>
+          <a class="vid-wrap" style="display:block;margin-top:.9rem" href="https://www.youtube.com/watch?v=D9UPaFqhBhA" target="_blank" rel="noopener noreferrer" aria-label="Ver video: Skipping en YouTube">
+            <div class="vid-thumb">
+              <img src="https://img.youtube.com/vi/D9UPaFqhBhA/mqdefault.jpg" alt="Skipping rodillas al pecho" loading="lazy" />
+              <div class="vid-overlay"><div class="play-btn" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+              <div class="vid-label"><svg class="yt-icon" width="16" height="11" viewBox="0 0 24 17" fill="red"><path d="M23.5 2.5a3 3 0 00-2.1-2.1C19.5 0 12 0 12 0S4.5 0 2.6.4A3 3 0 00.5 2.5 31 31 0 000 8.5a31 31 0 00.5 6 3 3 0 002.1 2.1C4.5 17 12 17 12 17s7.5 0 9.4-.4a3 3 0 002.1-2.1 31 31 0 00.5-6 31 31 0 00-.5-6z"/><polygon points="9.5,12.5 15.5,8.5 9.5,4.5" fill="white"/></svg> Ver en YouTube →</div>
+            </div>
+          </a>
+          <span class="bcard-tag">🔥 Activa piernas</span>
+        </div>
+      </div>
+
+      <div class="bcard rev d2">
+        <div class="bcard-top">
+          <div class="bcard-top-bg" style="background:linear-gradient(135deg,rgba(26,43,74,.5),rgba(13,27,42,.9))"></div>
+          <div class="bcard-emoji" aria-hidden="true">🤸</div>
+        </div>
+        <div class="bcard-body">
+          <h3 class="bcard-title">Saltos en Cruz</h3>
+          <p class="bcard-desc">
+            Dibuja una cruz en el suelo y salta entre cuadros siguiendo una secuencia.
+            Trabaja la coordinación de piernas, el ritmo y la agilidad de pies.
+          </p>
+          <a class="vid-wrap" style="display:block;margin-top:.9rem" href="https://www.youtube.com/watch?v=N9xZ6iEfRuI" target="_blank" rel="noopener noreferrer" aria-label="Ver video: Saltos coordinados en YouTube">
+            <div class="vid-thumb">
+              <img src="https://img.youtube.com/vi/N9xZ6iEfRuI/mqdefault.jpg" alt="Saltos coordinados en cruz" loading="lazy" />
+              <div class="vid-overlay"><div class="play-btn" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+              <div class="vid-label"><svg class="yt-icon" width="16" height="11" viewBox="0 0 24 17" fill="red"><path d="M23.5 2.5a3 3 0 00-2.1-2.1C19.5 0 12 0 12 0S4.5 0 2.6.4A3 3 0 00.5 2.5 31 31 0 000 8.5a31 31 0 00.5 6 3 3 0 002.1 2.1C4.5 17 12 17 12 17s7.5 0 9.4-.4a3 3 0 002.1-2.1 31 31 0 00.5-6 31 31 0 00-.5-6z"/><polygon points="9.5,12.5 15.5,8.5 9.5,4.5" fill="white"/></svg> Ver en YouTube →</div>
+            </div>
+          </a>
+          <span class="bcard-tag">🎯 Agilidad</span>
+        </div>
+      </div>
+
+      <div class="bcard rev d3">
+        <div class="bcard-top">
+          <div class="bcard-top-bg" style="background:linear-gradient(135deg,rgba(255,90,31,.1),rgba(255,140,66,.25))"></div>
+          <div class="bcard-emoji" aria-hidden="true">💪</div>
+        </div>
+        <div class="bcard-body">
+          <h3 class="bcard-title">Equilibrio Dinámico</h3>
+          <p class="bcard-desc">
+            Párate en un pie y mueve los brazos en diferentes posiciones. Cierra los ojos para
+            más reto. Fundamental para la propiocepción y la estabilidad articular.
+          </p>
+          <a class="vid-wrap" style="display:block;margin-top:.9rem" href="https://www.youtube.com/watch?v=vbfzBslMwBc" target="_blank" rel="noopener noreferrer" aria-label="Ver video: Equilibrio dinámico en YouTube">
+            <div class="vid-thumb">
+              <img src="https://img.youtube.com/vi/vbfzBslMwBc/mqdefault.jpg" alt="Ejercicio de equilibrio dinámico" loading="lazy" />
+              <div class="vid-overlay"><div class="play-btn" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+              <div class="vid-label"><svg class="yt-icon" width="16" height="11" viewBox="0 0 24 17" fill="red"><path d="M23.5 2.5a3 3 0 00-2.1-2.1C19.5 0 12 0 12 0S4.5 0 2.6.4A3 3 0 00.5 2.5 31 31 0 000 8.5a31 31 0 00.5 6 3 3 0 002.1 2.1C4.5 17 12 17 12 17s7.5 0 9.4-.4a3 3 0 002.1-2.1 31 31 0 00.5-6 31 31 0 00-.5-6z"/><polygon points="9.5,12.5 15.5,8.5 9.5,4.5" fill="white"/></svg> Ver en YouTube →</div>
+            </div>
+          </a>
+          <span class="bcard-tag">⚖️ Equilibrio</span>
+        </div>
+      </div>
+
+      <div class="bcard rev d4">
+        <div class="bcard-top">
+          <div class="bcard-top-bg" style="background:linear-gradient(135deg,rgba(13,26,10,.8),rgba(21,32,16,.95))"></div>
+          <div class="bcard-emoji" aria-hidden="true">🏃</div>
+        </div>
+        <div class="bcard-body">
+          <h3 class="bcard-title">Carrera Lateral Cruzada</h3>
+          <p class="bcard-desc">
+            Desplázate lateralmente cruzando un pie por delante y luego por detrás. Mejora la
+            coordinación cruzada, el trabajo de caderas y la velocidad lateral tan importante en el fútbol.
+          </p>
+          <a class="vid-wrap" style="display:block;margin-top:.9rem" href="https://www.youtube.com/watch?v=PZGF5i3sFhY" target="_blank" rel="noopener noreferrer" aria-label="Ver video: Carrera lateral en YouTube">
+            <div class="vid-thumb">
+              <img src="https://img.youtube.com/vi/PZGF5i3sFhY/mqdefault.jpg" alt="Carrera lateral cruzada coordinación" loading="lazy" />
+              <div class="vid-overlay"><div class="play-btn" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+              <div class="vid-label"><svg class="yt-icon" width="16" height="11" viewBox="0 0 24 17" fill="red"><path d="M23.5 2.5a3 3 0 00-2.1-2.1C19.5 0 12 0 12 0S4.5 0 2.6.4A3 3 0 00.5 2.5 31 31 0 000 8.5a31 31 0 00.5 6 3 3 0 002.1 2.1C4.5 17 12 17 12 17s7.5 0 9.4-.4a3 3 0 002.1-2.1 31 31 0 00.5-6 31 31 0 00-.5-6z"/><polygon points="9.5,12.5 15.5,8.5 9.5,4.5" fill="white"/></svg> Ver en YouTube →</div>
+            </div>
+          </a>
+          <span class="bcard-tag">↔️ Velocidad lateral</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ CLUB ══════════════════ -->
+<section id="club" aria-labelledby="club-title">
+  <div class="container">
+    <div class="club-inner">
+      <div class="club-logo-wrap rev-l">
+        <div class="club-ring">
+          <img src="logo.png" alt="Club Deportivo El Diamante"
+               onerror="imgErr(this)"/>
+          <div class="fb" style="display:none">💎</div>
+        </div>
+      </div>
+      <div class="club-text rev-r">
+        <p class="eyebrow">📍 Pereira, Colombia</p>
+        <h2 class="stitle" id="club-title">Club Deportivo<br/><span class="hl">El Diamante</span></h2>
+        <p class="sdesc">
+          Más de 29 años formando deportistas con valores, disciplina y amor por el fútbol.
+          Bajo la dirección técnica de <strong style="color:var(--orange2)">Carlos Mesa</strong>,
+          seguimos creciendo para que cada jugador brille como un verdadero Diamante. 💎
+        </p>
+        <div class="facts" role="list">
+          <div class="fact" role="listitem">
+            <div class="fact-icon" aria-hidden="true">🏆</div>
+            <div class="fact-txt">
+              <strong>29+ años de trayectoria</strong>
+              <span>Formando deportistas desde 1995 en Pereira</span>
+            </div>
+          </div>
+          <div class="fact" role="listitem">
+            <div class="fact-icon" aria-hidden="true">👨‍🏫</div>
+            <div class="fact-txt">
+              <strong>D.T Carlos Mesa</strong>
+              <span>Dirección técnica experta y apasionada</span>
+            </div>
+          </div>
+          <div class="fact" role="listitem">
+            <div class="fact-icon" aria-hidden="true">📸</div>
+            <div class="fact-txt">
+              <strong>@clubdeportivoeldiamante</strong>
+              <span>Síguenos en Instagram · +4,000 seguidores</span>
+            </div>
+          </div>
+          <div class="fact" role="listitem">
+            <div class="fact-icon" aria-hidden="true">💬</div>
+            <div class="fact-txt">
+              <strong>¿Quieres unirte?</strong>
+              <span>
+                <a href="https://wa.link/io2y91" target="_blank" rel="noopener noreferrer"
+                   style="color:var(--orange);text-decoration:none;font-weight:600">
+                  Escríbenos por WhatsApp →
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer>
+  <div class="foot-ring">
+    <img src="logo.png" alt="CDD Diamante"
+         onerror="imgErr(this)"/>
+    <div class="fb" style="display:none;font-size:1.5rem">💎</div>
+  </div>
+  <div class="foot-name">Club Deportivo El Diamante · C.D.D</div>
+  <div class="foot-links">
+    <a href="https://www.instagram.com/clubdeportivoeldiamante" target="_blank" rel="noopener noreferrer">📸 Instagram</a>
+    <a href="https://wa.link/io2y91" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+    <a href="#inicio">⬆️ Volver arriba</a>
+  </div>
+  <p class="foot-copy">© 2026 Club Deportivo El Diamante. Hecho con 💎 en Pereira, Colombia.</p>
+</footer>
+
+<!-- ══════════════════ JAVASCRIPT ══════════════════ -->
+<script>
+  /* Fallback para imágenes que no cargan */
+  function imgErr(img) {
+    img.style.display = 'none';
+    // Buscar el siguiente elemento hermano que sea un div (el fallback)
+    let sib = img.nextElementSibling;
+    while (sib) {
+      if (sib.tagName === 'DIV') { sib.style.display = 'flex'; break; }
+      sib = sib.nextElementSibling;
+    }
+  }
+
+  /* Cursor glow */
+  const cgEl = document.getElementById('cg');
+  document.addEventListener('mousemove', e => {
+    cgEl.style.left = e.clientX + 'px';
+    cgEl.style.top  = e.clientY + 'px';
+  });
+
+  /* Partículas */
+  const pc = document.getElementById('ptcl');
+  for (let i = 0; i < 28; i++) {
+    const p = document.createElement('div');
+    p.className = 'p';
+    const s = Math.random() * 5 + 2;
+    p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random()*100}%;
+      bottom:${Math.random()*15}%;animation-duration:${Math.random()*9+6}s;
+      animation-delay:${Math.random()*7}s`;
+    pc.appendChild(p);
+  }
+
+  /* Navbar scroll */
+  const navEl = document.getElementById('nav');
+  window.addEventListener('scroll', () => navEl.classList.toggle('scrolled', scrollY > 60));
+
+  /* Mobile nav */
+  function toggleNav() {
+    const l = document.getElementById('navLinks'), b = document.getElementById('navTgl');
+    const o = l.classList.toggle('open');
+    b.setAttribute('aria-expanded', o);
+    document.body.style.overflow = o ? 'hidden' : '';
+  }
+  function closeNav() {
+    document.getElementById('navLinks').classList.remove('open');
+    document.getElementById('navTgl').setAttribute('aria-expanded','false');
+    document.body.style.overflow = '';
+  }
+
+  /* Scroll reveal */
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); }});
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.rev,.rev-l,.rev-r').forEach(el => obs.observe(el));
+
+  /* Filtro */
+  function filtrar(lugar, btn) {
+    document.querySelectorAll('.fpill').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('#cg2 .ecard').forEach(c => {
+      const show = lugar === 'todos' || c.dataset.lugar === lugar;
+      c.style.transition = 'opacity .3s,transform .3s';
+      if (show) {
+        c.style.display = '';
+        requestAnimationFrame(() => { c.style.opacity = '1'; c.style.transform = ''; });
+      } else {
+        c.style.opacity = '0'; c.style.transform = 'scale(.95)';
+        setTimeout(() => c.style.display = 'none', 300);
+      }
+    });
+  }
+
+  /* Contador animado en stats */
+  const stripObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.querySelectorAll('.sn').forEach(el => {
+        const target = +el.dataset.target, suf = el.dataset.suf || '';
+        let start = null;
+        const step = ts => {
+          if (!start) start = ts;
+          const p = Math.min((ts - start) / 1800, 1);
+          el.textContent = Math.floor(p * target) + suf;
+          if (p < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      });
+      stripObs.unobserve(e.target);
+    });
+  }, { threshold: .6 });
+  const stripEl = document.querySelector('.strip');
+  if (stripEl) stripObs.observe(stripEl);
+</script>
+</body>
+</html>
