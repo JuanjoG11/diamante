@@ -332,7 +332,33 @@
       color:rgba(255,255,255,.65);font-size:.77rem;font-weight:600;
       padding:.26rem .75rem;border-radius:999px;display:flex;align-items:center;gap:.3rem}
 
-    /* VIDEO YOUTUBE */
+    .ecard-objetivo {
+      display: flex;
+      align-items: flex-start;
+      gap: .6rem;
+      background: rgba(255,90,31,.08);
+      border: 1px solid rgba(255,90,31,.2);
+      border-radius: 10px;
+      padding: .6rem .9rem;
+      margin-bottom: 1.1rem;
+    }
+    .ecard-objetivo-icon { font-size: 1rem; flex-shrink: 0; margin-top: .05rem; }
+    .ecard-objetivo-text { font-size: .82rem; color: rgba(255,255,255,.8); line-height: 1.5; }
+    .ecard-objetivo-text strong { color: var(--orange2); font-weight: 700; display: block; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; margin-bottom: .1rem; }
+
+    .bcard-objetivo {
+      display: flex;
+      align-items: flex-start;
+      gap: .5rem;
+      background: rgba(255,90,31,.08);
+      border: 1px solid rgba(255,90,31,.2);
+      border-radius: 10px;
+      padding: .55rem .8rem;
+      margin-bottom: .9rem;
+    }
+    .bcard-objetivo-icon { font-size: .95rem; flex-shrink: 0; }
+    .bcard-objetivo-text { font-size: .8rem; color: rgba(255,255,255,.8); line-height: 1.5; }
+    .bcard-objetivo-text strong { color: var(--orange2); font-weight: 700; display: block; font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; margin-bottom: .1rem; }
     .vid-slot{border-radius:14px;overflow:hidden}
     .vid-slot a{display:block;text-decoration:none;border-radius:14px;overflow:hidden;position:relative}
     .vid-slot .vthumb{position:relative;aspect-ratio:16/9;overflow:hidden;
@@ -587,7 +613,11 @@
               <div class="ddots"><div class="dd on"></div><div class="dd"></div><div class="dd"></div></div>
             </div>
           </div>
-          <p class="ecard-desc">Alterna toques suaves con pie derecho e izquierdo manteniéndolo cerca del suelo. Mejora el toque fino y la sensación de balón. Perfecto para empezar cualquier sesión.</p>
+          <div class="ecard-objetivo">
+            <span class="ecard-objetivo-icon">🎯</span>
+            <div class="ecard-objetivo-text"><strong>Objetivo</strong>Desarrollar el toque fino y la sensación de balón con ambos pies, sentando la base de cualquier habilidad técnica.</div>
+          </div>
+          <p class="ecard-desc">Alterna toques suaves con pie derecho e izquierdo manteniéndolo cerca del suelo. Perfecto para empezar cualquier sesión.</p>
           <div class="mats"><span class="mc">⚽ 1 balón</span><span class="mc">📐 2m² espacio</span></div>
           <div class="vid-slot" id="v1"></div>
         </div>
@@ -611,7 +641,11 @@
               <div class="ddots"><div class="dd on"></div><div class="dd on"></div><div class="dd"></div></div>
             </div>
           </div>
-          <p class="ecard-desc">Mantén el balón en el aire con pies, rodillas y cabeza. Desafía tu récord de toques cada día. El mejor ejercicio para la coordinación ojo-pie y la concentración.</p>
+          <div class="ecard-objetivo">
+            <span class="ecard-objetivo-icon">🎯</span>
+            <div class="ecard-objetivo-text"><strong>Objetivo</strong>Mejorar la coordinación ojo-pie, la concentración y el dominio del balón en el aire con todas las superficies de contacto.</div>
+          </div>
+          <p class="ecard-desc">Mantén el balón en el aire con pies, rodillas y cabeza. Desafía tu récord de toques cada día.</p>
           <div class="mats"><span class="mc">⚽ 1 balón</span><span class="mc">📐 Espacio libre</span></div>
           <div class="vid-slot" id="v2"></div>
         </div>
@@ -635,7 +669,11 @@
               <div class="ddots"><div class="dd on"></div><div class="dd on"></div><div class="dd"></div></div>
             </div>
           </div>
-          <p class="ecard-desc">Coloca conos o botellas en línea y conduce el balón sorteándolos. Trabaja la agilidad, el cambio de dirección y el control en movimiento.</p>
+          <div class="ecard-objetivo">
+            <span class="ecard-objetivo-icon">🎯</span>
+            <div class="ecard-objetivo-text"><strong>Objetivo</strong>Desarrollar la agilidad, el cambio de dirección y el control del balón en movimiento a distintas velocidades.</div>
+          </div>
+          <p class="ecard-desc">Coloca conos o botellas en línea y conduce el balón sorteándolos. Aumenta la velocidad conforme domines el recorrido.</p>
           <div class="mats"><span class="mc">⚽ 1 balón</span><span class="mc">🔺 5+ conos</span><span class="mc">📏 10m largo</span></div>
           <div class="vid-slot" id="v3"></div>
         </div>
@@ -658,6 +696,10 @@
               <span class="dlabel">Nivel</span>
               <div class="ddots"><div class="dd on"></div><div class="dd"></div><div class="dd"></div></div>
             </div>
+          </div>
+          <div class="ecard-objetivo">
+            <span class="ecard-objetivo-icon">🎯</span>
+            <div class="ecard-objetivo-text"><strong>Objetivo</strong>Perfeccionar el primer toque, la precisión del pase con el interior del pie y la recepción con ambas piernas.</div>
           </div>
           <p class="ecard-desc">Busca una pared y practica el pase con el interior del pie. Alterna control con derecho e izquierdo. Aumenta la distancia conforme mejora tu precisión.</p>
           <div class="mats"><span class="mc">⚽ 1 balón</span><span class="mc">🧱 Pared lisa</span></div>
@@ -683,7 +725,11 @@
               <div class="ddots"><div class="dd on"></div><div class="dd on"></div><div class="dd"></div></div>
             </div>
           </div>
-          <p class="ecard-desc">Posa el balón encima del pie y mantén el equilibrio en un solo pie. Muévelo suavemente sin dejarlo caer. Fortalece el tobillo y la propiocepción.</p>
+          <div class="ecard-objetivo">
+            <span class="ecard-objetivo-icon">🎯</span>
+            <div class="ecard-objetivo-text"><strong>Objetivo</strong>Fortalecer el tobillo, mejorar la propiocepción y el equilibrio estático sobre un pie con el balón en contacto.</div>
+          </div>
+          <p class="ecard-desc">Posa el balón encima del pie y mantén el equilibrio en un solo pie. Muévelo suavemente sin dejarlo caer.</p>
           <div class="mats"><span class="mc">⚽ 1 balón</span><span class="mc">📐 Espacio pequeño</span></div>
           <div class="vid-slot" id="v5"></div>
         </div>
@@ -706,6 +752,10 @@
               <span class="dlabel">Nivel</span>
               <div class="ddots"><div class="dd on"></div><div class="dd on"></div><div class="dd on"></div></div>
             </div>
+          </div>
+          <div class="ecard-objetivo">
+            <span class="ecard-objetivo-icon">🎯</span>
+            <div class="ecard-objetivo-text"><strong>Objetivo</strong>Trabajar la velocidad de reacción, el primer toque en carrera y la capacidad de controlar el balón bajo presión física.</div>
           </div>
           <p class="ecard-desc">Sprinta 10 metros, controla el balón rodado y vuelve corriendo. Trabaja la reacción, el primer toque y la velocidad de movimiento.</p>
           <div class="mats"><span class="mc">⚽ 1 balón</span><span class="mc">🔺 2 conos</span><span class="mc">📏 10m espacio</span></div>
@@ -734,7 +784,11 @@
         </div>
         <div class="bcard-body">
           <h3 class="bcard-title">Skipping — Rodillas al Pecho</h3>
-          <p class="bcard-desc">Corre en el lugar llevando las rodillas lo más alto posible alternando rápido. Activa los flexores de cadera y mejora la cadencia de carrera.</p>
+          <div class="bcard-objetivo">
+            <span class="bcard-objetivo-icon">🎯</span>
+            <div class="bcard-objetivo-text"><strong>Objetivo</strong>Activar los flexores de cadera, aumentar la cadencia de carrera y mejorar la coordinación de piernas.</div>
+          </div>
+          <p class="bcard-desc">Corre en el lugar llevando las rodillas lo más alto posible alternando rápido.</p>
           <span class="bcard-tag">🔥 Activa piernas</span>
           <div class="vid-slot" id="v7"></div>
         </div>
@@ -747,7 +801,11 @@
         </div>
         <div class="bcard-body">
           <h3 class="bcard-title">Saltos en Cruz</h3>
-          <p class="bcard-desc">Dibuja una cruz en el suelo y salta entre cuadros siguiendo una secuencia. Trabaja la coordinación de piernas, el ritmo y la agilidad de pies.</p>
+          <div class="bcard-objetivo">
+            <span class="bcard-objetivo-icon">🎯</span>
+            <div class="bcard-objetivo-text"><strong>Objetivo</strong>Mejorar la coordinación de piernas, el ritmo y la agilidad de pies mediante patrones de salto en secuencia.</div>
+          </div>
+          <p class="bcard-desc">Dibuja una cruz en el suelo y salta entre cuadros siguiendo una secuencia.</p>
           <span class="bcard-tag">🎯 Agilidad</span>
           <div class="vid-slot" id="v8"></div>
         </div>
@@ -760,7 +818,11 @@
         </div>
         <div class="bcard-body">
           <h3 class="bcard-title">Equilibrio Dinámico</h3>
-          <p class="bcard-desc">Párate en un pie y mueve los brazos en diferentes posiciones. Cierra los ojos para más reto. Fundamental para la propiocepción y estabilidad articular.</p>
+          <div class="bcard-objetivo">
+            <span class="bcard-objetivo-icon">🎯</span>
+            <div class="bcard-objetivo-text"><strong>Objetivo</strong>Desarrollar la propiocepción, la estabilidad articular y el equilibrio estático-dinámico en un solo apoyo.</div>
+          </div>
+          <p class="bcard-desc">Párate en un pie y mueve los brazos en diferentes posiciones. Cierra los ojos para más reto.</p>
           <span class="bcard-tag">⚖️ Equilibrio</span>
           <div class="vid-slot" id="v9"></div>
         </div>
@@ -773,7 +835,11 @@
         </div>
         <div class="bcard-body">
           <h3 class="bcard-title">Carrera Lateral Cruzada</h3>
-          <p class="bcard-desc">Desplázate lateralmente cruzando un pie por delante y luego por detrás. Mejora la coordinación cruzada y la velocidad lateral tan importante en el fútbol.</p>
+          <div class="bcard-objetivo">
+            <span class="bcard-objetivo-icon">🎯</span>
+            <div class="bcard-objetivo-text"><strong>Objetivo</strong>Fortalecer la coordinación cruzada y la velocidad de desplazamiento lateral, clave para el posicionamiento en el fútbol.</div>
+          </div>
+          <p class="bcard-desc">Desplázate lateralmente cruzando un pie por delante y luego por detrás.</p>
           <span class="bcard-tag">↔️ Velocidad lateral</span>
           <div class="vid-slot" id="v10"></div>
         </div>
@@ -835,70 +901,65 @@
 
 <script>
   /* ── VIDEOS ──────────────────────────────────────────────
-     Cada entrada: [slotId, ytVideoId, búsqueda de respaldo, etiqueta]
-     El thumbnail se carga desde YouTube. Si falla (video eliminado),
-     el link cambia automáticamente a la búsqueda de YouTube con ese término.
+     Cada entrada: [slotId, búsqueda exacta en YouTube, etiqueta]
+     Se construye un link directo a la búsqueda de YouTube con
+     el término más específico para ese ejercicio, garantizando
+     que el usuario siempre encuentre videos relevantes.
   ──────────────────────────────────────────────────────── */
   const VIDEOS = [
-    ['v1', '6pmz5PYEsBE', 'toques alternados pie futbol entrenamiento casa',          'Toques alternados · Fútbol'],
-    ['v2', 'RFBcDHnFCpk', 'malabares balon futbol tutorial español principiantes',    'Malabares con el balón'],
-    ['v3', 'HAx6cBhHEoA', 'conduccion balon zigzag conos futbol individual',          'Conducción en zigzag'],
-    ['v4', 'XNSBJjBK4c4', 'pase control pared futbol individual entrenamiento',       'Pase y control · pared'],
-    ['v5', 'F3LwCBP49gY', 'equilibrio coordinacion balon futbol ejercicio',           'Equilibrio con balón'],
-    ['v6', 'cDPJkDR9yAI', 'sprint control balon velocidad futbol entrenamiento',      'Sprint y control rápido'],
-    ['v7', 'D9UPaFqhBhA', 'skipping rodillas pecho futbol coordinacion',              'Skipping · Rodillas al pecho'],
-    ['v8', 'lfBZDArPxhY', 'saltos coordinacion cruz agilidad futbol',                 'Saltos en cruz'],
-    ['v9', 'vbfzBslMwBc', 'equilibrio dinamico un pie coordinacion ejercicio',        'Equilibrio dinámico'],
-    ['v10','PZGF5i3sFhY', 'carrera lateral cruzada agilidad futbol coordinacion',     'Carrera lateral cruzada'],
+    ['v1',  'toques alternados pie derecho izquierdo futbol entrenamiento individual',     'Toques alternados · Ver en YouTube'],
+    ['v2',  'malabares balon futbol dominio tutorial español',                             'Malabares con el balón · Ver en YouTube'],
+    ['v3',  'conduccion balon zigzag conos futbol individual entrenamiento',               'Conducción en zigzag · Ver en YouTube'],
+    ['v4',  'pase control balon pared futbol entrenamiento individual precision',          'Pase y control pared · Ver en YouTube'],
+    ['v5',  'equilibrio balon pie futbol coordinacion propiocepcion ejercicio',            'Equilibrio con balón · Ver en YouTube'],
+    ['v6',  'sprint control balon rapido futbol velocidad primer toque',                   'Sprint y control rápido · Ver en YouTube'],
+    ['v7',  'skipping rodillas pecho ejercicio coordinacion futbol',                       'Skipping rodillas al pecho · Ver en YouTube'],
+    ['v8',  'saltos en cruz coordinacion agilidad pies futbol ejercicio',                  'Saltos en cruz · Ver en YouTube'],
+    ['v9',  'equilibrio dinamico un pie coordinacion ejercicio futbol',                    'Equilibrio dinámico · Ver en YouTube'],
+    ['v10', 'carrera lateral cruzada carioca agilidad coordinacion futbol',                'Carrera lateral cruzada · Ver en YouTube'],
   ];
 
   const YT_ICON = `<svg width="18" height="12" viewBox="0 0 24 17" fill="#FF0000" style="flex-shrink:0"><path d="M23.5 2.5a3 3 0 00-2.1-2.1C19.5 0 12 0 12 0S4.5 0 2.6.4A3 3 0 00.5 2.5 31 31 0 000 8.5a31 31 0 00.5 6 3 3 0 002.1 2.1C4.5 17 12 17 12 17s7.5 0 9.4-.4a3 3 0 002.1-2.1 31 31 0 00.5-6 31 31 0 00-.5-6z"/><polygon points="9.5,12.5 15.5,8.5 9.5,4.5" fill="white"/></svg>`;
 
-  function buildVideo(slotId, ytId, query, label) {
+  function buildVideo(slotId, query, label) {
     const slot = document.getElementById(slotId);
     if (!slot) return;
-    const watchUrl  = `https://www.youtube.com/watch?v=${ytId}`;
     const searchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`;
-    const thumb     = `https://img.youtube.com/vi/${ytId}/mqdefault.jpg`;
 
     slot.innerHTML = `
-      <a href="${watchUrl}" target="_blank" rel="noopener noreferrer"
-         style="display:block;text-decoration:none;border-radius:14px;overflow:hidden;position:relative">
-        <div style="position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:14px;
-                    background:linear-gradient(135deg,#0D1B2A,#1E2F47)">
-          <img src="${thumb}" alt="${label}" loading="lazy"
-               style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s"
-               onerror="this.closest('a').href='${searchUrl}';this.style.display='none'"/>
-          <div style="position:absolute;inset:0;background:rgba(0,0,0,.35);display:flex;
-                      flex-direction:column;align-items:center;justify-content:center;gap:.5rem;
-                      transition:background .3s;z-index:1" class="vover">
-            <div style="width:56px;height:56px;border-radius:50%;background:#FF0000;display:flex;
-                        align-items:center;justify-content:center;
-                        box-shadow:0 6px 24px rgba(255,0,0,.45);transition:transform .2s">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
-            </div>
-            <span style="font-size:.78rem;font-weight:600;color:rgba(255,255,255,.8);display:flex;align-items:center;gap:.4rem">
-              ${YT_ICON} Ver en YouTube
-            </span>
-          </div>
+      <a href="${searchUrl}" target="_blank" rel="noopener noreferrer"
+         style="display:flex;align-items:center;gap:.75rem;text-decoration:none;
+                background:rgba(255,0,0,.07);border:1px solid rgba(255,0,0,.22);
+                border-radius:12px;padding:.75rem 1rem;
+                transition:background .2s,border-color .2s,transform .2s">
+        <div style="width:40px;height:40px;border-radius:50%;background:#FF0000;flex-shrink:0;
+                    display:flex;align-items:center;justify-content:center;
+                    box-shadow:0 4px 16px rgba(255,0,0,.4)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
         </div>
+        <div style="flex:1;min-width:0">
+          <div style="display:flex;align-items:center;gap:.4rem;margin-bottom:.18rem">
+            ${YT_ICON}
+            <span style="font-size:.72rem;font-weight:700;color:#FF4444;letter-spacing:.05em;text-transform:uppercase">YouTube</span>
+          </div>
+          <span style="font-size:.82rem;font-weight:600;color:rgba(255,255,255,.85);
+                       white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block">${label}</span>
+        </div>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="2.5" style="flex-shrink:0">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+        </svg>
       </a>`;
 
-    // Hover effect
-    const a   = slot.querySelector('a');
-    const img = slot.querySelector('img');
-    const ov  = slot.querySelector('.vover');
+    const a = slot.querySelector('a');
     a.addEventListener('mouseenter', () => {
-      if (img) img.style.transform = 'scale(1.05)';
-      if (ov)  ov.style.background = 'rgba(0,0,0,.18)';
-      const btn = slot.querySelector('div[style*="border-radius:50%"]');
-      if (btn) btn.style.transform = 'scale(1.14)';
+      a.style.background    = 'rgba(255,0,0,.14)';
+      a.style.borderColor   = 'rgba(255,0,0,.45)';
+      a.style.transform     = 'translateY(-1px)';
     });
     a.addEventListener('mouseleave', () => {
-      if (img) img.style.transform = '';
-      if (ov)  ov.style.background = 'rgba(0,0,0,.35)';
-      const btn = slot.querySelector('div[style*="border-radius:50%"]');
-      if (btn) btn.style.transform = '';
+      a.style.background    = 'rgba(255,0,0,.07)';
+      a.style.borderColor   = 'rgba(255,0,0,.22)';
+      a.style.transform     = '';
     });
   }
 
