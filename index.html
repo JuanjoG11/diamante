@@ -60,10 +60,129 @@
     .nav-toggle span{display:block;width:26px;height:2px;background:#fff;
       border-radius:2px;transition:all .3s}
 
+    /* AUTHOR RIBBON */
+    .author-ribbon {
+      position: relative;
+      z-index: 10;
+      margin-top: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2.2rem;
+      padding: 1.8rem 2.5rem;
+      background: linear-gradient(100deg, rgba(13,27,42,1) 0%, rgba(20,34,58,.98) 50%, rgba(13,27,42,1) 100%);
+      border-bottom: 1px solid rgba(255,90,31,.2);
+      overflow: hidden;
+      animation: fadeDown .9s ease both;
+    }
+    .author-ribbon::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg,
+        transparent 0%, rgba(255,90,31,.06) 30%,
+        rgba(255,90,31,.12) 50%, rgba(255,90,31,.06) 70%, transparent 100%);
+      pointer-events: none;
+    }
+    .author-ribbon::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--orange) 35%, var(--orange2) 65%, transparent);
+    }
+    .author-ribbon-scan {
+      position: absolute;
+      top: 0; bottom: 0; left: -60%;
+      width: 40%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.04), transparent);
+      animation: scan 4s ease-in-out 1.5s infinite;
+      pointer-events: none;
+    }
+    @keyframes scan { 0%{left:-60%} 100%{left:120%} }
+    @keyframes fadeDown { from{opacity:0;transform:translateY(-18px)} to{opacity:1;transform:translateY(0)} }
+
+    .author-logo-wrap {
+      position: relative;
+      flex-shrink: 0;
+    }
+    .author-logo-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 16px;
+      background: var(--grad-o);
+      opacity: .22;
+      filter: blur(10px);
+    }
+    .author-logo-img {
+      display: block;
+      height: 70px;
+      width: auto;
+      border-radius: 12px;
+      position: relative;
+      z-index: 1;
+      filter: brightness(1.1) drop-shadow(0 4px 16px rgba(255,90,31,.35));
+    }
+
+    .author-divider {
+      width: 1px;
+      height: 54px;
+      background: linear-gradient(to bottom, transparent, rgba(255,255,255,.22), transparent);
+      flex-shrink: 0;
+    }
+
+    .author-info {
+      display: flex;
+      flex-direction: column;
+      gap: .3rem;
+    }
+    .author-label {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--orange);
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .author-label::before {
+      content: '';
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: var(--orange);
+      border-radius: 2px;
+    }
+    .author-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 400;
+      color: #fff;
+      letter-spacing: .06em;
+      line-height: 1;
+    }
+    .author-name em {
+      font-style: normal;
+      color: var(--orange2);
+    }
+
+    @media(max-width:700px){
+      .author-ribbon { gap: 1.2rem; padding: 1.3rem 1.4rem; }
+      .author-logo-img { height: 52px; }
+      .author-name { font-size: 1.6rem; }
+      .author-divider { height: 44px; }
+    }
+    @media(max-width:420px){
+      .author-logo-img { height: 40px; }
+      .author-name { font-size: 1.3rem; }
+    }
+
     /* HERO */
     .hero{min-height:100vh;display:flex;flex-direction:column;
       align-items:center;justify-content:center;text-align:center;
-      padding:7rem 1.5rem 5rem;position:relative;overflow:hidden}
+      padding:5rem 1.5rem 5rem;position:relative;overflow:hidden}
     .hero-bg{position:absolute;inset:0;z-index:0;
       background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(255,90,31,.09) 0%,transparent 70%),
                  var(--grad-d)}
@@ -354,6 +473,20 @@
     <span></span><span></span><span></span>
   </button>
 </nav>
+
+<!-- AUTHOR RIBBON -->
+<div class="author-ribbon" role="note" aria-label="Autoría del proyecto">
+  <div class="author-ribbon-scan" aria-hidden="true"></div>
+  <div class="author-logo-wrap">
+    <img src="logo areandina.png" alt="Fundación Universitaria del Área Andina" class="author-logo-img"
+         onerror="this.style.display='none'" />
+  </div>
+  <div class="author-divider" aria-hidden="true"></div>
+  <div class="author-info">
+    <span class="author-label">Realizado por</span>
+    <span class="author-name">Juan Felipe <em>Henao Gómez</em></span>
+  </div>
+</div>
 
 <!-- HERO -->
 <section class="hero" id="inicio" aria-label="Inicio">
